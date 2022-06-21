@@ -1,33 +1,55 @@
-let decreaseCartItemButtons = document.getElementsByClassName("decrease");
-let increaseCartItemButtons = document.getElementsByClassName("increase");
-let totalItemsInCart = decreaseCartItemButtons.length;
-// let quantity = document.getElementsByClassName("quantity");
-let cartRows = document.getElementsByClassName("cart-rows");
-
-for(let i=0; i<cartRows.length; i++){
-        //update cart item quantities
-        // console.log("here");
-        let cartRows = document.getElementsByClassName("cart-rows");
-        let cartRow = cartRows[i];
-        let button = cartRow.getElementsByClassName("decrease")[0];
-        button.addEventListener("click", decreaseCartItem);
-        button = cartRow.getElementsByClassName("increase")[0];
-        button.addEventListener("click", increaseCartItem);
+if (document.readyState == 'loading'){
+        document.addEventListener('DOMContentLoaded', ready)
+} else{
+        ready()
 }
+    
+function ready() {
+        let decreaseCartItemButtons = document.getElementsByClassName("decrease");
+        let increaseCartItemButtons = document.getElementsByClassName("increase");
+        let totalItemsInCart = decreaseCartItemButtons.length;
+        // let quantity = document.getElementsByClassName("quantity");
+        let cartRows = document.getElementsByClassName("cart-rows");
 
+        for(let i=0; i<cartRows.length; i++){
+                //update cart item quantities
+                console.log(cartRows.length, "length");
+                let cartRows = document.getElementsByClassName("cart-rows");
+                let cartRow = cartRows[i];
+                let button = cartRow.getElementsByClassName("decrease")[0];
+                button.addEventListener("click", decreaseCartItem);
+                button = cartRow.getElementsByClassName("increase")[0];
+                button.addEventListener("click", increaseCartItem);
+        }
+
+        var quantityInputs = document.getElementsByClassName('cart-quantity-input')
+        for (var i = 0; i < quantityInputs.length; i++) {
+                var input = quantityInputs[i]
+                input.addEventListener('change', quantityChanged)
+        }
+
+        var addToCartButtons = document.getElementsByClassName('shop-item-button')
+        for (var i = 0; i < addToCartButtons.length; i++) {
+                var button = addToCartButtons[i]
+                button.addEventListener('click', addToCartClicked)
+        }
+
+        document.getElementsByClassName('btn-purchase')[0].addEventListener('click', purchaseClicked)
+}
+    
 function decreaseCartItem(event){
         let buttonClicked  = event.target;
         let buttonEL = buttonClicked.parentElement.parentElement.getElementsByClassName("quantity");
         buttonEL[0].innerText = parseInt(buttonEL[0].innerText) -1;
-        // buttonEL[1].innerHTML = parseInt(buttonEL[0].innerText) -1;
+        buttonEL[1].innerText = parseInt(buttonEL[1].innerText) -1;
         updateCartTotal();
 }
 
 function increaseCartItem(event){
         let buttonClicked  = event.target;
         let buttonEL = buttonClicked.parentElement.parentElement.getElementsByClassName("quantity");
-        buttonEL[0].innerHTML = parseInt(buttonEL[0].innerText) +1;
-        // buttonEL[1].innerHTML = parseInt(buttonEL[0].innerText) +1;
+        buttonEL[0].innerText = parseInt(buttonEL[0].innerText) +1;
+        buttonEL[1].innerText = parseInt(buttonEL[1].innerText) +1;
         updateCartTotal();
 }
 
@@ -80,7 +102,6 @@ function addItemToCart(title, price, imageSrc){
                 </div>`;
         cartRow.innerHTML = cartRowContents;
         cartItems.append(cartRow);
-        cartRow.getElementsByClassName()
         cartRow.getElementsByClassName("decrease")[0].addEventListener("click", decreaseCartItem);
         cartRow.getElementsByClassName("increase")[0].addEventListener("click", increaseCartItem);
 }
