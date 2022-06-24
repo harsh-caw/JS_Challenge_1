@@ -32,7 +32,7 @@ body {
 .ring {
   position: absolute;
   left: 0;
-  stroke: #09A65A;
+  stroke: #0bc634;
   top: 0;
   z-index: 1;
 }
@@ -84,7 +84,7 @@ input[type=text]:disabled {
   border-bottom: none;
 }
 
-.start {
+#start {
   cursor: pointer;
   font-family: 'Montserrat', sans-serif;
   font-size: 16px;
@@ -98,7 +98,7 @@ input[type=text]:disabled {
   margin-bottom: 20px;
 }
 
-.start:hover {
+#start:hover {
   opacity: 1;
 }
 
